@@ -1,6 +1,7 @@
 import os
 import time
 import matplotlib.pyplot as plt
+import csv
 
 # Função para ler a temperatura da CPU
 def ler_temperatura_cpu():
@@ -19,6 +20,14 @@ def plotar_grafico(temperaturas, intervalos):
     plt.grid(True)
     plt.show()
 
+# Função para salvar dados em um arquivo CSV
+def salvar_dados_csv(intervalos, temperaturas, arquivo='temperatura_cpu.csv'):
+    with open(arquivo, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Tempo (s)', 'Temperatura (°C)'])  # Cabeçalho
+        for intervalo, temperatura in zip(intervalos, temperaturas):
+            writer.writerow([intervalo, temperatura])
+
 # Função principal do monitoramento
 def monitorar_temperatura_cpu(duracao=60, intervalo=5):
     temperaturas = []
@@ -34,10 +43,13 @@ def monitorar_temperatura_cpu(duracao=60, intervalo=5):
         print(f"Temperatura da CPU atual: {temperatura:.2f} °C")
         time.sleep(intervalo)
 
+    # Salvar dados em CSV
+    salvar_dados_csv(intervalos, temperaturas)
+    
+    # Plotar gráfico
     plotar_grafico(temperaturas, intervalos)
 
 if __name__ == "__main__":
     duracao_monitoramento = 60  # Tempo de monitoramento em segundos
     intervalo_leitura = 5  # Intervalo entre leituras em segundos
     monitorar_temperatura_cpu(duracao_monitoramento, intervalo_leitura)
-
