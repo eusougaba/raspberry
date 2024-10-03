@@ -8,8 +8,8 @@ Este projeto utiliza o Raspberry Pi para monitorar a temperatura da CPU e exibir
 ## Funcionalidades
 
 - Coleta de dados de temperatura da CPU em tempo real
-- Exibição de gráficos de temperatura
-- Interface amigável para visualização dos dados
+- Exibição de gráficos de temperatura (Em andamento)
+- Interface amigável para visualização dos dados (Em andamento)
 
 ## Tecnologias Utilizadas
 
